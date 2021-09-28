@@ -11,6 +11,10 @@ public class ReviewOwnBookingView extends View{
 	}
 	
 	public void printRoomBooking(ArrayList<RoomBooking> list) {
+		
+		if(list.size() == 0)
+			System.out.println("No any records");
+		
 		for(RoomBooking rb: list)
 			System.out.println(rb);
 	}

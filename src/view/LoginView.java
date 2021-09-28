@@ -3,7 +3,7 @@ package view;
 import java.io.Console;
 import java.util.Scanner;
 
-import model.Employee;
+import model.user.Employee;
 
 public class LoginView extends View {
 

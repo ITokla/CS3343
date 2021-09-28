@@ -1,9 +1,9 @@
 package controller;
 import java.security.NoSuchAlgorithmException;
 
-
-import model.Employee;
 import model.Hash;
+import model.user.Administrator;
+import model.user.Employee;
 import system.CRB;
 import view.UserCreateView;
 
@@ -25,6 +25,10 @@ public class UserCreateController extends Controller {
 
 	public static Employee createEmployee(String username, String password) {
 		return new Employee(username, Hash.md5(password));
+	}
+	
+	public static Administrator createAdministrator(String username, String password) {
+		return new Administrator(username, Hash.md5(password));
 	}
 	
 	public String getDescription() {

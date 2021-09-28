@@ -2,8 +2,8 @@ package controller;
 
 import java.util.Collections;
 
-import model.Employee;
 import model.Hash;
+import model.user.Employee;
 import system.CRB;
 import view.LoginView;
 

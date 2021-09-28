@@ -24,8 +24,10 @@ public class RoomBookingController extends Controller {
 		try {
 
 			LocalDate bookDate = view.getDate();
-			if(bookDate == null)
+			if(bookDate == null || !isVerifyDate(bookDate)) {
+				view.showMessage("Date must be >= now.");
 				return;
+			}
 			
 			CRB instance = CRB.getInstance();
 			view.showDateRoomingDetails(bookDate, instance.getRooms(), instance.getRoomBookingByDate(bookDate));
@@ -63,7 +65,13 @@ public class RoomBookingController extends Controller {
 			System.out.println("Cannot read the date.");
 		}
 	}
-
+	
+	// Verify date, which must be >= now
+	public boolean isVerifyDate(LocalDate date) {
+		return date.isAfter(LocalDate.now()) || date.isEqual(LocalDate.now());
+	}
+	
+	// Search Room
 	public Room searchRoom(String roomName) {
 		return CRB.getInstance().searchRoom(roomName);
 	}

@@ -22,8 +22,12 @@ public abstract class Search {
 	}
 	
 	public void printRoomBookings(ArrayList<RoomBooking> list) {
-		for(RoomBooking rb: list)
-			System.out.println(rb);
+		if(list.size() < 1) {
+			System.out.println("No any record found.");
+		}else {
+			for(RoomBooking rb: list)
+				System.out.println(rb);
+		}
 	}
 	
 	public Sort getSortType(String type) {

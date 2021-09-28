@@ -4,8 +4,8 @@ import java.io.Console;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-import model.Employee;
 import model.Hash;
+import model.user.Employee;
 
 public class UserCreateView extends View{
 	

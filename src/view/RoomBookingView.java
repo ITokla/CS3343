@@ -44,19 +44,10 @@ public class RoomBookingView extends View {
 		}else 
 			date = date.withDayOfMonth(Integer.parseInt(selectedDate[2]));
 		
-		if(isVerifyDate(date))
-			return date;
-		else
-			System.out.println("Date must be >= now.");
-		
-		return null;
+		return date;
 	}
 	
-	// Verify date, which must be >= now
-	public boolean isVerifyDate(LocalDate date) {
-		return date.isAfter(LocalDate.now()) || date.isEqual(LocalDate.now());
-	}
-	
+
 	// Input room name
 	public String getRoomName() {
 		System.out.print("Please enter Room name:");

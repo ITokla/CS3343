@@ -1,6 +1,6 @@
 package controller.cmd;
 
-import model.Employee;
+import model.user.Employee;
 import system.CRB;
 
 public class EmployeeSearch extends Search {

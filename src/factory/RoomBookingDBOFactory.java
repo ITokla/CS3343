@@ -2,8 +2,8 @@ package factory;
 
 import java.util.ArrayList;
 
-import model.Employee;
 import model.RoomBooking;
+import model.user.Employee;
 
 
 public class RoomBookingDBOFactory {

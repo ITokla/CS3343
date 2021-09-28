@@ -35,6 +35,8 @@ public class RoomBookingCancelController extends Controller{
 			CRB instance = CRB.getInstance();
 			RoomBooking preRemoveRoomBooking = instance.getRoomBookingList().get(selectedIndex);
 			view.showRoomBookingDetails(preRemoveRoomBooking);
+			
+			// Confirm [Y/n]
 			if(view.confirmCancel()) {
 				instance.removeRoomBooking(preRemoveRoomBooking);
 				view.showMessage("Room booking cancel");

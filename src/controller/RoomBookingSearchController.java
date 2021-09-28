@@ -25,9 +25,11 @@ public class RoomBookingSearchController extends Controller{
 			String[] cmd = view.getCommand();
 			if(cmd == null)
 				continue;
+			// exit the search
 			if(cmd[0].equals("exit"))
 				break;
-			System.out.println(Arrays.copyOfRange(cmd, 1, cmd.length)[0]);
+			
+			// remove command Prefix (date|emp|room) and pass the args to execute
 			map.get(cmd[0]).execute(Arrays.copyOfRange(cmd, 1, cmd.length));
 		}
 	}

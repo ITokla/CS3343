@@ -11,4 +11,11 @@ abstract class View {
 	public void showMessage(String msg) {
 		System.out.println(msg);
 	}
+	
+	public boolean Confirm() {
+		System.out.println("Confirm[Y/n]");
+		if(input.nextLine().trim().equals("Y"))
+			return true;
+		return false;
+	}
 }

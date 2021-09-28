@@ -8,7 +8,6 @@ import controller.LoginController;
 import java.util.Scanner;
 
 import factory.MenuFactory;
-import logging.StateManager;
 import system.CRB;
 import view.LoginView;
 
@@ -17,11 +16,9 @@ class CommandHandler{
 	
 	private LinkedHashMap<String, Controller> mapCmds;
 	private Scanner input;
-	private StateManager state;
 	
 	public CommandHandler(Scanner input) {
 		mapCmds = new LinkedHashMap<String, Controller>();
-		state = new StateManager();
 		this.input = input;
 		initMenu();
 	}
@@ -39,7 +36,6 @@ class CommandHandler{
 	public void displayMenu() {
 		for (Entry<String, Controller> mapCmd: mapCmds.entrySet())
 			System.out.println(mapCmd.getKey() + "=" + mapCmd.getValue().getDescription());
-			
 	}
 	
 	public void execute() {
@@ -49,11 +45,13 @@ class CommandHandler{
 			while (CRB.getInstance().getSession() == null) 
 				mapCmds.get("login").execute();
 			
-			mapCmds = MenuFactory.create(input);
+			
+			mapCmds = MenuFactory.create(CRB.getInstance().getSession(), input);
 			
 			while(CRB.getInstance().getSession() != null) {
 				System.out.println();
 				displayMenu();
+				System.out.print("Command: ");
 				String cmd = input.nextLine();
 				if(mapCmds.containsKey(cmd))
 					mapCmds.get(cmd).execute();

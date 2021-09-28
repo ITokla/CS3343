@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import model.user.Employee;
+
 public class RoomBooking implements Comparable<RoomBooking>{
 	
 	private Employee employee;
