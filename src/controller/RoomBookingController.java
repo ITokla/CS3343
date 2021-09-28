@@ -13,7 +13,7 @@ import view.RoomBookingView;
 
 public class RoomBookingController extends Controller {
 
-	RoomBookingView view;
+	private RoomBookingView view;
 
 	public RoomBookingController(RoomBookingView view) {
 		this.view = view;

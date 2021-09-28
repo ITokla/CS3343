@@ -14,6 +14,7 @@ import controller.RoomBookingController;
 import controller.RoomBookingSearchController;
 import controller.RoomBookingViewOnlyController;
 import controller.UserCreateController;
+import controller.UserPasswordResetController;
 import controller.UserRemoveController;
 import model.Session;
 import view.AddRoomView;
@@ -24,6 +25,7 @@ import view.RoomBookingCancelView;
 import view.RoomBookingSearchView;
 import view.RoomBookingView;
 import view.UserCreateView;
+import view.UserPasswordResetView;
 import view.UserRemoveView;
 
 
@@ -53,6 +55,7 @@ public class MenuFactory {
 		
 		map.put("ur", new UserRemoveController(new UserRemoveView(input)));
 		map.put("uc", new UserCreateController(new UserCreateView(input)));
+		map.put("upwdrest", new UserPasswordResetController(new UserPasswordResetView(input)));
 		
 		map.put("rr", new RemoveRoomController(new RemoveRoomView(input)));
 		map.put("ar", new AddRoomController(new AddRoomView(input)));

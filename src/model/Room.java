@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Room implements  Comparable<Room>{
 	private String roomName;
@@ -19,12 +20,10 @@ public class Room implements  Comparable<Room>{
 	}
 	
 	public static Room searchRoom(ArrayList<Room> list, String roomName) {
+		Collections.sort(list);
+		int index = Collections.binarySearch(list, new Room(roomName));
 		
-		for(Room room: list) {
-			if(room.roomName.equals(roomName))
-				return room;
-		}
-		return null;
+		return (index < 0)? null : list.get(index);
 	}
 	
 }

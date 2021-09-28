@@ -35,7 +35,7 @@ class CommandHandler{
 	
 	public void displayMenu() {
 		for (Entry<String, Controller> mapCmd: mapCmds.entrySet())
-			System.out.println(mapCmd.getKey() + "=" + mapCmd.getValue().getDescription());
+			System.out.println(mapCmd.getKey() + " = " + mapCmd.getValue().getDescription());
 	}
 	
 	public void execute() {
@@ -51,7 +51,7 @@ class CommandHandler{
 			while(CRB.getInstance().getSession() != null) {
 				System.out.println();
 				displayMenu();
-				System.out.print("Command: ");
+				System.out.print("\nCommand: ");
 				String cmd = input.nextLine();
 				if(mapCmds.containsKey(cmd))
 					mapCmds.get(cmd).execute();

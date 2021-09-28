@@ -10,23 +10,36 @@ public class Employee implements Comparable<Employee>{
 	private String empId;
 	private String username;
 	private String pwd;
+	private boolean init;
 	protected Permission permission;
 	
 	public Employee(String username, String pwd) {
 		this.username = username;
 		this.pwd = pwd;
+		this.init = true;
 		setPermission();
 	}
 	
-	public Employee(String empId, String username, String pwd) {
-		this.empId = empId;
-		this.username = username;
-		this.pwd = pwd;
-		setPermission();
+	public void setEmployee(Employee employee) {
+		this.username = employee.username;
+		this.pwd = employee.pwd;
+		this.init = employee.init;
+	}
+	
+	public boolean getInit() {
+		return this.init;
+	}
+	
+	public void setInit(boolean init) {
+		this.init = init;
 	}
 	
 	public void setPermission() {
 		permission = EmployeePermission.getInstance();
+	}
+	
+	public void setPassword(String hashedPassword) {
+		this.pwd = hashedPassword;
 	}
 	
 	public String getEmpId() {
@@ -42,7 +55,7 @@ public class Employee implements Comparable<Employee>{
 	}
 	
 	public int compareTo(Employee employee) {
-		return this.username.compareTo(employee.username);
+		return username.compareTo(employee.username);
 	}
 	
 	public Permission getPermission() {

@@ -4,7 +4,7 @@ import system.CRB;
 import view.RemoveRoomView;
 
 public class RemoveRoomController extends Controller {
-	protected RemoveRoomView view;
+	private RemoveRoomView view;
 	
 	public RemoveRoomController(RemoveRoomView view) {
 		this.view = view;

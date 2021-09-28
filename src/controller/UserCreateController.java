@@ -1,10 +1,11 @@
 package controller;
 import java.security.NoSuchAlgorithmException;
 
-import model.Hash;
 import model.user.Administrator;
 import model.user.Employee;
 import system.CRB;
+import util.Generator;
+import util.Hash;
 import view.UserCreateView;
 
 public class UserCreateController extends Controller {
@@ -15,12 +16,22 @@ public class UserCreateController extends Controller {
 	
 	
 	public void execute() {
-		try {
-			CRB.getInstance().regEmployee(view.createEmployee());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			view.showMessage("Create User failed.");
-		}
+		
+		String username;
+		Employee emp = null;
+		do {
+			username = view.getUsername();
+			emp = CRB.getInstance().searchEmployee(username);
+			if(emp != null)
+				view.showMessage("Username is already");
+		}while(emp != null);
+		
+		String password = Generator.generatePwd(8);
+		CRB.getInstance().regEmployee(new Employee(username, Hash.md5(password)));
+		
+		System.out.println(username + " is created, init password: " + password);
+		System.out.println("User need to reset password in login first time.");
+		
 	}
 
 	public static Employee createEmployee(String username, String password) {

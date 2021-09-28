@@ -5,11 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 import factory.EmployeeDBOFactory;
-import factory.RoomBookingDBOFactory;
 import factory.RoomDBOFactory;
 import model.Room;
 import model.Session;
@@ -27,10 +24,8 @@ public class CRB {
 	private CRB() {
 		// employeeList = new ArrayList<>();
 		employeeList = EmployeeDBOFactory.create();
-		Employee emp = new Employee("test", "test");
-		employeeList.add(emp);
 		roomList = RoomDBOFactory.create();
-		bookingList = RoomBookingDBOFactory.create(emp);
+		bookingList = new ArrayList<RoomBooking>();
 		session = null;
 	}
 	
@@ -112,16 +107,6 @@ public class CRB {
 		return (index > -1)? tmpEmployeeList.get(index): null;
 	}
 	
-	public Employee searchEmployeeById(String empId) {
-		Comparator<Employee> c = new Comparator<Employee>() {
-			public int compare(Employee emp1, Employee emp2) {
-				return emp1.getEmpId().compareTo(emp2.getEmpId());
-			}
-		};
-		int index = Collections.binarySearch(employeeList, new Employee(empId, null, null), c);
-		
-		return (index < -1)? null : employeeList.get(index);
-	}
 	
 	public ArrayList<RoomBooking> getRoomBookingByRoomName(String roomName){
 		return RoomBooking.getRoomBookingByRoomName(bookingList, roomName);

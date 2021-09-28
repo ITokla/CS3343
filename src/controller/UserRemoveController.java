@@ -12,8 +12,9 @@ public class UserRemoveController extends Controller{
 	}
 	
 	public void execute() {
-		String empId = view.getEmployeeId();
-		CRB.getInstance().removeEmployee(CRB.getInstance().searchEmployeeById(empId));
+		String username = view.getEmployee();
+		CRB.getInstance().removeEmployee(CRB.getInstance().searchEmployee(username));
+		view.showMessage("Remove suceeful");
 	}
 	
 	public String getDescription() {

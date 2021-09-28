@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import model.user.Employee;
 
-public class LoginView extends View {
+public class LoginView extends UserManageView {
 
 	public LoginView(Scanner input) {
 		super(input);
