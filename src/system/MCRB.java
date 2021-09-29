@@ -95,8 +95,6 @@ public class MCRB extends CRBCore{
 	}
 	
 	public ArrayList<RoomBooking> searchCompanyRoomBookig(LocalDate date, Employee emp){
-		System.out.println(emp.getUsername());
-		System.out.println(searchCompany(emp).getName());
 		return RoomBooking.getRoomBookingByCompany(this.bookingList, searchCompany(emp).getEmployees(), date);
 	}
 	
