@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Collections;
-
 import model.user.Employee;
 import system.CRB;
 import util.Hash;
@@ -23,7 +21,6 @@ public class LoginController extends Controller {
 			view.showMessage("Login successful");
 			
 			if(emp.getInit()) {
-				
 				view.showMessage("\nSetup new Password");
 				String password = this.view.initPassword();
 				emp.setPassword(password);
@@ -39,14 +36,11 @@ public class LoginController extends Controller {
 	public Employee login(Employee emp) {
 		// For testing, remove md5(pwd);
 		String hashedPassword = Hash.md5(emp.getPassword());
-		// search Employee
-		Employee employee = CRB.getInstance().searchEmployee(emp.getUsername());
-		return (employee != null && verify(employee, hashedPassword)) ? employee : null;
+		emp.setPassword(hashedPassword);
+		return CRB.getInstance().login(emp);
 	}
 
-	public boolean verify(Employee employee, String hashedPassword) {
-		return employee.getPassword().equals(hashedPassword) ? true : false;
-	}
+
 	
 	public String getDescription() {
 		return "Login";

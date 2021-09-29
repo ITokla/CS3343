@@ -1,4 +1,4 @@
-package controller.cmd;
+package controller.search.cmd;
 
 import java.util.ArrayList;
 import java.util.Collections;

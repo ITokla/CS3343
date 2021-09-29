@@ -1,10 +1,11 @@
-package controller;
+package controller.usr;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import controller.Controller;
 import factory.RoomBookingStaticTimeFactory;
 import model.Room;
 import model.RoomBooking;

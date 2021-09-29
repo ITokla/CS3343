@@ -1,5 +1,6 @@
-package controller;
+package controller.admin;
 
+import controller.Controller;
 import model.user.Employee;
 import system.CRB;
 import util.Generator;

@@ -1,12 +1,12 @@
-package controller;
+package controller.usr;
 
 import model.user.Employee;
 import system.CRB;
-import view.UserCreateView;
+import view.UserManageView;
 
 public class PasswordSetupController {
-	private UserCreateView view;
-	public PasswordSetupController(UserCreateView view) {
+	private UserManageView view;
+	public PasswordSetupController(UserManageView view) {
 		this.view = view;
 	}
 	

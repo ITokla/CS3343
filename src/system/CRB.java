@@ -1,32 +1,21 @@
 package system;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import factory.EmployeeDBOFactory;
 import factory.RoomDBOFactory;
-import model.Room;
-import model.Session;
 import model.user.Employee;
-import model.RoomBooking;
 
-public class CRB {
+
+public class CRB extends CRBCore{
 	
 	private final static CRB instance = new CRB();
-	private static ArrayList<Employee> employeeList;
-	private static ArrayList<Room> roomList;
-	private static ArrayList<RoomBooking> bookingList;
-	private static Session session;
+	private ArrayList<Employee> employeeList;
 	
 	private CRB() {
-		// employeeList = new ArrayList<>();
+		super(RoomDBOFactory.create());
 		employeeList = EmployeeDBOFactory.create();
-		roomList = RoomDBOFactory.create();
-		bookingList = new ArrayList<RoomBooking>();
-		session = null;
 	}
 	
 	public static CRB getInstance() {
@@ -39,84 +28,24 @@ public class CRB {
 	
 	public void regEmployee(Employee emp) {
 		employeeList.add(emp);
-	}
-	
-	public void addRoom(Room room) {
-		roomList.add(room);
-	}
-	
-	public void createSession(Employee emp) {
-		if(emp != null)
-			session = new Session(emp);
-	}
-	
-	public Session getSession() {
-		return session;
-	}
-	
-	public RoomBooking addRoomBooking(Room room, LocalDate date, LocalTime startTime, LocalTime endTime) {
-		RoomBooking rb = new RoomBooking(session.getEmployee(), LocalDateTime.of(date, startTime), LocalDateTime.of(date, endTime), room);;
-		bookingList.add(rb);
-		return rb;
-	}
-	
-	public ArrayList<RoomBooking> getRoomBookingList(){
-		return bookingList;
-	}
-	
-	public void removeRoomBooking(RoomBooking rb) {
-		bookingList.remove(rb);
-	}
-	
-	public ArrayList<Room> getRooms(){
-		return roomList;
-	}
-	
-	public Room searchRoom(String roomName) {
-		return Room.searchRoom(roomList, roomName);
-	}
-	
-	public ArrayList<RoomBooking> searchBooking(LocalDate date){
-		return RoomBooking.getRoomBookingByDate(bookingList, date);
-	}
-	
-	public ArrayList<RoomBooking> searchBooking(LocalDate date, Room room){
-		return RoomBooking.getRoomBooking(bookingList, date, room);
-	}
-	
-	public ArrayList<RoomBooking> getRoomBookingByDate(LocalDate date){
-		return RoomBooking.getRoomBookingByDate(bookingList, date);
-	}
-	
-	public ArrayList<RoomBooking> getRoomBookingByEmployeeAndDate(Employee emp, LocalDate date){
-		return RoomBooking.getRoomBookingByEmployeeAndDate(bookingList, emp, date);
-	} 
-	
-	public ArrayList<RoomBooking> getRoomBookingBySessionAndDate(LocalDate date){
-		return RoomBooking.getRoomBookingByEmployeeAndDate(bookingList, session.getEmployee(), date);
-	}
-	
-	public ArrayList<RoomBooking> getRoomBookingByEmployee(Employee employee){
-		return RoomBooking.getRoomBookingByEmployee(bookingList, employee);
+		Collections.sort(employeeList);
 	}
 	
 	public Employee searchEmployee(String name) {
-		ArrayList<Employee> tmpEmployeeList = employeeList;
-		Collections.sort(tmpEmployeeList);
-		int index = Collections.binarySearch(tmpEmployeeList, new Employee(name, null));
-		return (index > -1)? tmpEmployeeList.get(index): null;
+		int index = Collections.binarySearch(employeeList, new Employee(name, null));
+		return (index > -1)? employeeList.get(index): null;
 	}
 	
-	
-	public ArrayList<RoomBooking> getRoomBookingByRoomName(String roomName){
-		return RoomBooking.getRoomBookingByRoomName(bookingList, roomName);
-	}
-	
-	public void clearSession() {
-		CRB.session = null;
-	}
-
 	public void removeEmployee(Employee emp) {
 		employeeList.remove(emp);
 	}
+	
+	public Employee login(Employee emp) {
+		Employee employee = searchEmployee(emp.getUsername());
+		boolean login = (employee != null && verifyPassword(employee, emp));
+		if(login)
+			createSession(employee);
+		return (!login)? null: employee;
+	}
+	
 }

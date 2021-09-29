@@ -1,6 +1,6 @@
-package controller;
-import java.security.NoSuchAlgorithmException;
+package controller.admin;
 
+import controller.Controller;
 import model.user.Administrator;
 import model.user.Employee;
 import system.CRB;

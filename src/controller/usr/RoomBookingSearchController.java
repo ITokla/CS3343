@@ -1,8 +1,9 @@
-package controller;
+package controller.usr;
 
 import java.util.LinkedHashMap;
 
-import controller.cmd.Search;
+import controller.Controller;
+import controller.search.cmd.Search;
 import factory.SearchCmdFactory;
 import view.RoomBookingSearchView;
 import java.util.Arrays;

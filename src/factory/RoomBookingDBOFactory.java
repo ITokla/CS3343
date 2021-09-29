@@ -1,6 +1,7 @@
 package factory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import model.RoomBooking;
 import model.user.Employee;
@@ -15,6 +16,8 @@ public class RoomBookingDBOFactory {
 //
 //		list.add(new RoomBooking(emp, LocalDateTime.of(2021,9,26, 13,30,0), LocalDateTime.of(2021, 9, 26, 14, 30,0)));
 //		list.add(new RoomBooking(emp, LocalDateTime.of(2021,9,27, 13,30,0), LocalDateTime.of(2021, 9, 27, 14, 30,0)));
+		
+		Collections.sort(list);
 		return list;
 	}
 }

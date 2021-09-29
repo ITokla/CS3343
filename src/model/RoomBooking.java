@@ -45,7 +45,6 @@ public class RoomBooking implements Comparable<RoomBooking>{
 	}
 
 	public static ArrayList<RoomBooking> getRoomBookingByEmployee(ArrayList<RoomBooking> list, Employee employee){
-		Collections.sort(list);
 		ArrayList<RoomBooking> employeeRoomBookings = new ArrayList<RoomBooking>();
 		for(RoomBooking rb: list) {
 			if(rb.employee == employee)
@@ -55,7 +54,6 @@ public class RoomBooking implements Comparable<RoomBooking>{
 	}
 	
 	public static ArrayList<RoomBooking> getRoomBookingByEmployeeAndDate(ArrayList<RoomBooking> list, Employee employee, LocalDate date){
-		Collections.sort(list);
 		ArrayList<RoomBooking> employeeRoomBookings = new ArrayList<>();
 		for(RoomBooking rb: list) {
 			if(rb.employee == employee && rb.startDateTime.toLocalDate().isEqual(date))
@@ -66,7 +64,6 @@ public class RoomBooking implements Comparable<RoomBooking>{
 	
 	
 	public static ArrayList<RoomBooking> getRoomBookingByDate(ArrayList<RoomBooking> list, LocalDate date){
-		Collections.sort(list);
 		ArrayList<RoomBooking> employeeRoomBookings = new ArrayList<>();
 		for(RoomBooking rb: list) {
 			if(rb.startDateTime.toLocalDate().isEqual(date))
@@ -76,7 +73,6 @@ public class RoomBooking implements Comparable<RoomBooking>{
 	}
 	
 	public static ArrayList<RoomBooking> getRoomBooking(ArrayList<RoomBooking> list, LocalDate date, Room room){
-		Collections.sort(list);
 		ArrayList<RoomBooking> employeeRoomBookings = new ArrayList<>();
 		for(RoomBooking rb: list) {
 			if(rb.startDateTime.toLocalDate().isEqual(date) && rb.room == room)
@@ -87,7 +83,6 @@ public class RoomBooking implements Comparable<RoomBooking>{
 	
 	public static ArrayList<RoomBooking> getRoomBookingByRoomName(ArrayList<RoomBooking> list, String roomName){
 		return new ArrayList<RoomBooking>(list.stream().filter((RoomBooking rb) -> rb.room.getRoomName().toLowerCase().contains(roomName.toLowerCase())).collect(Collectors.toList()));
-	
 	}
 	
 

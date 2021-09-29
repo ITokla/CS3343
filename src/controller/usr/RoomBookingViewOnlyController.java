@@ -1,7 +1,8 @@
-package controller;
+package controller.usr;
 
 import java.time.LocalDate;
 
+import controller.Controller;
 import system.CRB;
 import view.RoomBookingView;
 

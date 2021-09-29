@@ -1,4 +1,4 @@
-package controller.cmd;
+package controller.search.cmd;
 
 import system.CRB;
 

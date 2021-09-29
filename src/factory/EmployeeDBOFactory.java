@@ -1,7 +1,9 @@
 package factory;
 
 import java.util.ArrayList;
-import controller.UserCreateController;
+import java.util.Collections;
+
+import controller.admin.UserCreateController;
 import model.user.Employee;
 
 public class EmployeeDBOFactory {
@@ -9,6 +11,7 @@ public class EmployeeDBOFactory {
 		ArrayList<Employee> list = new ArrayList<>();
 		list.add(UserCreateController.createEmployee("test", "test"));
 		list.add(UserCreateController.createAdministrator("admin", "admin"));
+		Collections.sort(list);
 		return list;
 	}
 }

@@ -1,5 +1,6 @@
-package controller;
+package controller.admin;
 
+import controller.Controller;
 import system.CRB;
 import view.RemoveRoomView;
 
