@@ -1,7 +1,7 @@
 package controller.search.cmd;
 
 import model.user.Employee;
-import system.CRB;
+import system.MCRB;
 
 public class EmployeeSearch extends Search {
 	
@@ -10,7 +10,7 @@ public class EmployeeSearch extends Search {
 			return;
 		
 		String sortType = (cmds.length < 2)? "ASC": cmds[1];
-		CRB instance = CRB.getInstance();
+		MCRB instance = MCRB.getInstance();
 		Employee emp = instance.searchEmployee(cmds[0]);
 		if(emp == null)
 			return;

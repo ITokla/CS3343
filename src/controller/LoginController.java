@@ -1,7 +1,7 @@
 package controller;
 
 import model.user.Employee;
-import system.CRB;
+import system.MCRB;
 import util.Hash;
 import view.LoginView;
 
@@ -17,7 +17,7 @@ public class LoginController extends Controller {
 
 		Employee emp = login(view.getLoginUser());
 		if (emp != null) {
-			CRB.getInstance().createSession(emp);
+			MCRB.getInstance().createSession(emp);
 			view.showMessage("Login successful");
 			
 			if(emp.getInit()) {
@@ -26,7 +26,6 @@ public class LoginController extends Controller {
 				emp.setPassword(password);
 				emp.setInit(false);
 			}
-				
 			
 		} else
 			view.showMessage("Username or Password incorrect");
@@ -37,7 +36,7 @@ public class LoginController extends Controller {
 		// For testing, remove md5(pwd);
 		String hashedPassword = Hash.md5(emp.getPassword());
 		emp.setPassword(hashedPassword);
-		return CRB.getInstance().login(emp);
+		return MCRB.getInstance().login(emp);
 	}
 
 

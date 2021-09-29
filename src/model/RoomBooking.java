@@ -85,6 +85,12 @@ public class RoomBooking implements Comparable<RoomBooking>{
 		return new ArrayList<RoomBooking>(list.stream().filter((RoomBooking rb) -> rb.room.getRoomName().toLowerCase().contains(roomName.toLowerCase())).collect(Collectors.toList()));
 	}
 	
+	public static ArrayList<RoomBooking> getRoomBookingByCompany(ArrayList<RoomBooking> rbs, ArrayList<Employee> emps, LocalDate date){
 
+		ArrayList<RoomBooking> result = new ArrayList<RoomBooking>();
+		for(Employee emp: emps)
+			 result.addAll(rbs.stream().filter((RoomBooking rb) -> rb.employee == emp && rb.startDateTime.toLocalDate().isEqual(date)).collect(Collectors.toList()));
+		return (result.size() == 0)? null : result;
+	}
 
 }

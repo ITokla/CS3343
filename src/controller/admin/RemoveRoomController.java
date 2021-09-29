@@ -1,7 +1,7 @@
 package controller.admin;
 
 import controller.Controller;
-import system.CRB;
+import system.MCRB;
 import view.RemoveRoomView;
 
 public class RemoveRoomController extends Controller {
@@ -14,7 +14,7 @@ public class RemoveRoomController extends Controller {
 	public void execute() {
 		String roomName = this.view.getRoomName();
 		if(this.view.Confirm())
-			CRB.getInstance().addRoom(CRB.getInstance().searchRoom(roomName));
+			MCRB.getInstance().removeRoom(MCRB.getInstance().searchRoom(roomName));
 	}
 
 	@Override

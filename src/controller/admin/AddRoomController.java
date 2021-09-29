@@ -2,7 +2,7 @@ package controller.admin;
 
 import controller.Controller;
 import model.Room;
-import system.CRB;
+import system.MCRB;
 import view.AddRoomView;
 
 public class AddRoomController extends Controller{
@@ -13,7 +13,7 @@ public class AddRoomController extends Controller{
 	
 	public void execute() {
 		Room room = this.view.createRoom();
-		CRB.getInstance().addRoom(room);
+		MCRB.getInstance().addRoom(room);
 	}
 
 	@Override

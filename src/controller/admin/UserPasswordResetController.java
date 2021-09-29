@@ -2,7 +2,7 @@ package controller.admin;
 
 import controller.Controller;
 import model.user.Employee;
-import system.CRB;
+import system.MCRB;
 import util.Generator;
 import util.Hash;
 import view.UserPasswordResetView;
@@ -18,7 +18,7 @@ public class UserPasswordResetController extends Controller{
 	public void execute() {
 		// TODO Auto-generated method stub
 		String username = this.view.getEmployee();
-		Employee employee = CRB.getInstance().searchEmployee(username);
+		Employee employee = MCRB.getInstance().searchEmployee(username);
 		if(employee == null)
 			view.showMessage("User not found.");
 		String password = Generator.generatePwd(8);

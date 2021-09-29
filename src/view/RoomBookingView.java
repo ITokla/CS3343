@@ -14,16 +14,6 @@ public class RoomBookingView extends View {
 		super(input);
 	}
 
-	// User choose the index in available times
-	public LocalTime selectTime(ArrayList<LocalTime> availableTimes) {
-
-		for (int i = 0; i < availableTimes.size(); i++) {
-			System.out.printf("[%d]: ", i);
-			System.out.println(availableTimes.get(i));
-		}
-		System.out.print("Please Enter the index you want to chose: ");
-		return availableTimes.get(Integer.parseInt(input.nextLine()));
-	}
 
 	public LocalDate getDate() throws NumberFormatException{
 		System.out.print("Please select month (Example: 2021-09/ 2021-09-26): ");

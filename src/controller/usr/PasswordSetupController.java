@@ -1,7 +1,7 @@
 package controller.usr;
 
 import model.user.Employee;
-import system.CRB;
+import system.MCRB;
 import view.UserManageView;
 
 public class PasswordSetupController {
@@ -11,7 +11,7 @@ public class PasswordSetupController {
 	}
 	
 	public void execute() {
-		CRB.getInstance().getSession().getEmployee().setPassword(view.initPassword());
+		MCRB.getInstance().getSession().getEmployee().setPassword(view.initPassword());
 	}
 	
 	public static void initPassowrd(Employee employee) {

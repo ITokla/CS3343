@@ -32,7 +32,7 @@ public abstract class UserManageView extends View{
 				System.out.println("Warning: console not found, password input may be echoed");
 				System.out.print("Password: ");
 				pwd = input.nextLine();
-				System.out.println("Confirm password: ");
+				System.out.print("Confirm password: ");
 				pwdConfirm = input.nextLine();
 			}
 			if(!pwd.equals(pwdConfirm))

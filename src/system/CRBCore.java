@@ -5,20 +5,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import factory.EmployeeDBOFactory;
-import factory.RoomDBOFactory;
 import model.Room;
 import model.Session;
 import model.user.Employee;
-import util.Hash;
 import model.RoomBooking;
 
 abstract class CRBCore {
 	
 	// private ArrayList<Employee> employeeList;
 	private ArrayList<Room> roomList;
-	private ArrayList<RoomBooking> bookingList;
+	protected ArrayList<RoomBooking> bookingList;
 	private Session session;
 	
 	CRBCore() {
@@ -39,6 +35,11 @@ abstract class CRBCore {
 		this.bookingList = bookingList;
 	}
 	
+	
+	public void removeRoom(Room room) {
+		roomList.remove(room);
+		Collections.sort(roomList);
+	}
 	
 	public void addRoom(Room room) {
 		roomList.add(room);

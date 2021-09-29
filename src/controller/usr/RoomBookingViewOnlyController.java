@@ -3,7 +3,7 @@ package controller.usr;
 import java.time.LocalDate;
 
 import controller.Controller;
-import system.CRB;
+import system.MCRB;
 import view.RoomBookingView;
 
 public class RoomBookingViewOnlyController extends Controller {
@@ -18,7 +18,7 @@ public class RoomBookingViewOnlyController extends Controller {
 		if(date == null)
 			return;
 		
-		CRB instance = CRB.getInstance();
+		MCRB instance = MCRB.getInstance();
 		view.showDateRoomingDetails(date, instance.getRooms(), instance.getRoomBookingByDate(date));
 
 		

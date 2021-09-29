@@ -8,7 +8,7 @@ import controller.LoginController;
 import java.util.Scanner;
 
 import factory.MenuFactory;
-import system.CRB;
+import system.MCRB;
 import view.LoginView;
 
 
@@ -42,13 +42,13 @@ class CommandHandler{
 		
 		while(true) {
 			
-			while (CRB.getInstance().getSession() == null) 
+			while (MCRB.getInstance().getSession() == null) 
 				mapCmds.get("login").execute();
 			
 			
-			mapCmds = MenuFactory.create(CRB.getInstance().getSession(), input);
+			mapCmds = MenuFactory.create(MCRB.getInstance().getSession(), input);
 			
-			while(CRB.getInstance().getSession() != null) {
+			while(MCRB.getInstance().getSession() != null) {
 				System.out.println();
 				displayMenu();
 				System.out.print("\nCommand: ");

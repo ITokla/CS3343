@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import controller.Controller;
 
 import java.time.LocalDate;
+
+import model.Credit;
 import model.RoomBooking;
-import system.CRB;
+import system.MCRB;
+import util.Time;
 import view.RoomBookingCancelView;
 
 public class RoomBookingCancelController extends Controller{
@@ -23,7 +26,7 @@ public class RoomBookingCancelController extends Controller{
 			LocalDate date = view.getCancelDate();
 			ArrayList<RoomBooking> employeeBookings = searchRoomBooking(date);
 			
-			if(employeeBookings.size() == 0) {
+			if(employeeBookings == null || employeeBookings.size() == 0) {
 				view.showMessage("Not found.");
 				return;
 			}
@@ -32,17 +35,21 @@ public class RoomBookingCancelController extends Controller{
 			// If found more than 1 booking in date, let user select
 			if (employeeBookings.size() > 1) {
 				view.showMessage("More than 1 found.");
-				selectedIndex = view.getCancelRoomBookingIndex(employeeBookings);
+				selectedIndex = view.selectList(employeeBookings);
 			}
 			
-			CRB instance = CRB.getInstance();
-			RoomBooking preRemoveRoomBooking = instance.getRoomBookingList().get(selectedIndex);
+			MCRB instance = MCRB.getInstance();
+			RoomBooking preRemoveRoomBooking = employeeBookings.get(selectedIndex);
 			view.showRoomBookingDetails(preRemoveRoomBooking);
 			
 			// Confirm [Y/n]
 			if(view.confirmCancel()) {
 				instance.removeRoomBooking(preRemoveRoomBooking);
 				view.showMessage("Room booking cancel");
+				long time = Time.durationMinutes(preRemoveRoomBooking.getStartTime(), preRemoveRoomBooking.getEndTime());
+				Credit credit = instance.searchCompany(instance.getSession().getEmployee()).getCredit();
+				credit.setMinute(credit.toMinutes() + time);
+				view.showMessage("Company Credit update: " + credit.toMinutes());
 			}
 		} catch(ParseException e) {
 			System.out.println("Please enter correct format: yyyy-MM-dd");
@@ -52,7 +59,8 @@ public class RoomBookingCancelController extends Controller{
 		
 
 	public ArrayList<RoomBooking> searchRoomBooking(LocalDate date){
-		return CRB.getInstance().getRoomBookingBySessionAndDate(date);
+		System.out.println(MCRB.getInstance().getSession().getEmployee().getUsername());
+		return MCRB.getInstance().searchCompanyRoomBookig(date, MCRB.getInstance().getSession().getEmployee());
 	}
 	
 	public String getDescription() {

@@ -1,6 +1,7 @@
 package model.user;
 
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import model.user.permission.EmployeePermission;
 import model.user.permission.Permission;
@@ -60,6 +61,11 @@ public class Employee implements Comparable<Employee>{
 	
 	public Permission getPermission() {
 		return permission;
+	}
+	
+	public static Employee search(ArrayList<Employee> emps, String username) {
+		int index = Collections.binarySearch(emps, new Employee(username, null));
+		return (index < 0)? null : emps.get(index);
 	}
 
 }

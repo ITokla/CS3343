@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import model.RoomBooking;
+import view.View;
 
 public abstract class Search {
 	
@@ -22,12 +23,7 @@ public abstract class Search {
 	}
 	
 	public void printRoomBookings(ArrayList<RoomBooking> list) {
-		if(list.size() < 1) {
-			System.out.println("No any record found.");
-		}else {
-			for(RoomBooking rb: list)
-				System.out.println(rb);
-		}
+		View.showAllRecords(list);
 	}
 	
 	public Sort getSortType(String type) {

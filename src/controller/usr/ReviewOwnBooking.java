@@ -1,7 +1,7 @@
 package controller.usr;
 
 import controller.Controller;
-import system.CRB;
+import system.MCRB;
 import view.ReviewOwnBookingView;
 
 public class ReviewOwnBooking extends Controller{
@@ -11,7 +11,7 @@ public class ReviewOwnBooking extends Controller{
 	}
 	
 	public void execute() {
-		view.printRoomBooking(CRB.getInstance().getRoomBookingByEmployee(CRB.getInstance().getSession().getEmployee()));
+		view.printRoomBooking(MCRB.getInstance().getRoomBookingByEmployee(MCRB.getInstance().getSession().getEmployee()));
 	}
 	
 	public String getDescription() {
