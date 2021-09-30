@@ -23,17 +23,6 @@ public class RoomBookingCancelView extends View{
 		return LocalDate.parse(dateString);
 	}
 	
-	public int getCancelRoomBookingIndex(ArrayList<RoomBooking> list) {
-		for(int i = 0; i < list.size(); ) {
-			System.out.printf("[%d]: ", i);
-			System.out.println(list.get(i++));
-		}
-		System.out.print("Please enter index: ");
-		
-		// if there is input.nextInt(), next input will read "" only
-		return Integer.parseInt(input.nextLine());
-	}
-	
 	public boolean confirmCancel() {
 		System.out.print("Confirm delete?[Y/n]");
 		String confirm = input.nextLine();

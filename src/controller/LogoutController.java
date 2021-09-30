@@ -1,6 +1,6 @@
 package controller;
 
-import system.CRB;
+import system.MCRB;
 import view.LogoutView;
 
 public class LogoutController extends Controller{
@@ -12,7 +12,7 @@ public class LogoutController extends Controller{
 	}
 	
 	public void execute() {
-		CRB.getInstance().clearSession();
+		MCRB.getInstance().clearSession();
 		view.showMessage("Logouted\n");
 	}
 	

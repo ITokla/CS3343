@@ -1,10 +1,8 @@
 package controller;
 
-import java.util.Collections;
-
-import model.Employee;
-import model.Hash;
-import system.CRB;
+import model.user.Employee;
+import system.MCRB;
+import util.Hash;
 import view.LoginView;
 
 public class LoginController extends Controller {
@@ -19,8 +17,16 @@ public class LoginController extends Controller {
 
 		Employee emp = login(view.getLoginUser());
 		if (emp != null) {
-			CRB.getInstance().createSession(emp);
+			MCRB.getInstance().createSession(emp);
 			view.showMessage("Login successful");
+			
+			if(emp.getInit()) {
+				view.showMessage("\nSetup new Password");
+				String password = this.view.initPassword();
+				emp.setPassword(password);
+				emp.setInit(false);
+			}
+			
 		} else
 			view.showMessage("Username or Password incorrect");
 
@@ -29,19 +35,11 @@ public class LoginController extends Controller {
 	public Employee login(Employee emp) {
 		// For testing, remove md5(pwd);
 		String hashedPassword = Hash.md5(emp.getPassword());
-
-		// search Employee
-		int index = Collections.binarySearch(CRB.getInstance().getEmployeeList(),
-				new Employee(emp.getUsername(), hashedPassword));
-		if (index < 0)
-			return null;
-		Employee employee = CRB.getInstance().getEmployeeList().get(index);
-		return verify(employee, hashedPassword) ? employee : null;
+		emp.setPassword(hashedPassword);
+		return MCRB.getInstance().login(emp);
 	}
 
-	public boolean verify(Employee employee, String hashedPassword) {
-		return employee.getPassword().equals(hashedPassword) ? true : false;
-	}
+
 	
 	public String getDescription() {
 		return "Login";

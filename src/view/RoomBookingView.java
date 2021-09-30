@@ -14,16 +14,6 @@ public class RoomBookingView extends View {
 		super(input);
 	}
 
-	// User choose the index in available times
-	public LocalTime selectTime(ArrayList<LocalTime> availableTimes) {
-
-		for (int i = 0; i < availableTimes.size(); i++) {
-			System.out.printf("[%d]: ", i);
-			System.out.println(availableTimes.get(i));
-		}
-		System.out.print("Please Enter the index you want to chose: ");
-		return availableTimes.get(Integer.parseInt(input.nextLine()));
-	}
 
 	public LocalDate getDate() throws NumberFormatException{
 		System.out.print("Please select month (Example: 2021-09/ 2021-09-26): ");
@@ -44,19 +34,10 @@ public class RoomBookingView extends View {
 		}else 
 			date = date.withDayOfMonth(Integer.parseInt(selectedDate[2]));
 		
-		if(isVerifyDate(date))
-			return date;
-		else
-			System.out.println("Date must be >= now.");
-		
-		return null;
+		return date;
 	}
 	
-	// Verify date, which must be >= now
-	public boolean isVerifyDate(LocalDate date) {
-		return date.isAfter(LocalDate.now()) || date.isEqual(LocalDate.now());
-	}
-	
+
 	// Input room name
 	public String getRoomName() {
 		System.out.print("Please enter Room name:");
@@ -86,8 +67,9 @@ public class RoomBookingView extends View {
 		}
 	}
 	
+	
 	// print Room booking detail by date
-	public void showDateRoomingDetails(LocalDate date, ArrayList<Room> rooms, ArrayList<RoomBooking> bookings) {
+	public static void showDateRoomingDetails(LocalDate date, ArrayList<Room> rooms, ArrayList<RoomBooking> bookings) {
 			
 		LocalTime startTime = LocalTime.of(9, 0);
 		LocalTime endTime = LocalTime.of(20, 30);

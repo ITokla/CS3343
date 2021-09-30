@@ -1,6 +1,8 @@
 package factory;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import model.Room;
 
 public class RoomDBOFactory {
@@ -14,6 +16,8 @@ public class RoomDBOFactory {
 		list.add(new Room("sss606"));
 		list.add(new Room("607"));
 		
+		
+		Collections.sort(list);
 		return list;
 	}
 }
