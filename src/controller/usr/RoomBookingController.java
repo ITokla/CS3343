@@ -1,6 +1,5 @@
 package controller.usr;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class RoomBookingController extends Controller {
 			
 			
 			// Display room details and let user input the room
-			view.showDateRoomingDetails(bookDate, rooms, instance.getRoomBookingByDate(bookDate));
+			RoomBookingView.showDateRoomingDetails(bookDate, rooms, instance.getRoomBookingByDate(bookDate));
 			
 			
 			String roomName = view.getRoomName();
@@ -110,7 +109,7 @@ public class RoomBookingController extends Controller {
 			credit.setHour((credit.toMinutes() - Time.durationMinutes(startTime, endTime))/60);
 
 		}  catch (Exception e) {
-			System.out.println("Cannot read the date.");
+			System.out.println("Cannot read the date." + e);
 		}
 	}
 	

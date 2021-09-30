@@ -11,6 +11,10 @@ public class AdministratorPermission extends EmployeePermission{
 		this.map.put("rr", true);
 		this.map.put("ar", true);
 		this.map.put("upwdrest", true);
+		this.map.put("rep", true);
+		this.map.put("credit", true);
+		this.map.put("rb", false);
+		
 	}
 	
 	public static AdministratorPermission getInstance() {

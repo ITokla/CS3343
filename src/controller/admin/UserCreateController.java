@@ -24,16 +24,18 @@ public class UserCreateController extends Controller {
 		int index = 0;
 		
 		// Search company by input name
-		ArrayList<Company> companys = MCRB.getInstance().searchCompany(view.getCompanyName());
-		if(companys.size() == 0) {
-			view.showMessage("Company not found");
-			return;
-		}
-		index = view.selectList(companys);
 		
-		// index == size mean EXIT
-		if(index == companys.size())
-			return;
+			ArrayList<Company> companys = MCRB.getInstance().searchCompany(view.getCompanyName());
+			if(companys.size() == 0) {
+				view.showMessage("Company not found");
+				return;
+			}
+			index = view.selectList(companys);
+			
+			// index == size mean EXIT
+			if(index == companys.size())
+				return;
+			
 		
 		String username;
 		Employee emp = null;
@@ -48,7 +50,7 @@ public class UserCreateController extends Controller {
 		
 		// Generate random password
 		String password = Generator.generatePwd(8);
-		MCRB.getInstance().regEmployee(companys.get(index), createEmployee(username, password));
+		companys.get(index).addEmployee(createEmployee(username, password));
 		
 		System.out.println(username + " is created, init password: " + password);
 		System.out.println("User need to reset password in login first time.");

@@ -1,6 +1,7 @@
 package controller.admin;
 
 import controller.Controller;
+import model.Room;
 import system.MCRB;
 import view.RemoveRoomView;
 
@@ -13,8 +14,14 @@ public class RemoveRoomController extends Controller {
 	
 	public void execute() {
 		String roomName = this.view.getRoomName();
+		
+		Room room = MCRB.getInstance().searchRoom(roomName);
+		if(room == null) {
+			view.showMessage("Room not found.");
+			return;
+		}
 		if(this.view.Confirm())
-			MCRB.getInstance().removeRoom(MCRB.getInstance().searchRoom(roomName));
+			MCRB.getInstance().removeRoom(room);
 	}
 
 	@Override

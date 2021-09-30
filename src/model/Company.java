@@ -42,14 +42,15 @@ public class Company implements Comparable<Company>{
 	public Credit getCredit() {
 		return credit;
 	}
-	
-	public void setCredit(double credit) {
-		this.credit = new Credit(credit);
-	}
+
 	
 	@Override
 	public int compareTo(Company o) {
 		return this.name.compareTo(o.name);
+	}
+	
+	public String toString() {
+		return name;
 	}
 	
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import util.Hash;
 
-public abstract class UserManageView extends View{
+public abstract class UserManageView extends CompanyManageView{
 	
 	public UserManageView(Scanner input) {
 		super(input);

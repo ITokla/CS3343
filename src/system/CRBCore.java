@@ -86,6 +86,11 @@ abstract class CRBCore {
 		return RoomBooking.getRoomBooking(bookingList, date, room);
 	}
 	
+	
+	public ArrayList<RoomBooking> getRoomBookingByMonth(LocalDate monthDate){
+		return RoomBooking.getRoomBookingByMonth(bookingList, monthDate);
+	}
+	
 	public ArrayList<RoomBooking> getRoomBookingByDate(LocalDate date){
 		return RoomBooking.getRoomBookingByDate(bookingList, date);
 	}
@@ -104,6 +109,11 @@ abstract class CRBCore {
 	
 	public ArrayList<RoomBooking> getRoomBookingByRoomName(String roomName){
 		return RoomBooking.getRoomBookingByRoomName(bookingList, roomName);
+	}
+	
+	public ArrayList<RoomBooking> getRoomBookingByRoomNameAndMonth(String roomName, LocalDate date){
+		ArrayList<RoomBooking> rbs = RoomBooking.getRoomBookingByRoomName(bookingList, roomName);
+		return RoomBooking.getRoomBookingByMonth(rbs, date);
 	}
 	
 	public void clearSession() {

@@ -7,7 +7,9 @@ import java.util.Scanner;
 import controller.Controller;
 import controller.LogoutController;
 import controller.admin.AddRoomController;
+import controller.admin.ExtraCreditController;
 import controller.admin.RemoveRoomController;
+import controller.admin.ReportController;
 import controller.admin.UserCreateController;
 import controller.admin.UserPasswordResetController;
 import controller.admin.UserRemoveController;
@@ -18,6 +20,8 @@ import controller.usr.RoomBookingSearchController;
 import controller.usr.RoomBookingViewOnlyController;
 import model.Session;
 import view.AddRoomView;
+import view.CommandView;
+import view.ExtraCreditView;
 import view.LogoutView;
 import view.RemoveRoomView;
 import view.ReviewOwnBookingView;
@@ -53,12 +57,17 @@ public class MenuFactory {
 		map.put("own", new ReviewOwnBooking(new ReviewOwnBookingView(input)));
 		map.put("vra", new RoomBookingViewOnlyController(new RoomBookingView(input)));
 		
-		map.put("ur", new UserRemoveController(new UserRemoveView(input)));
 		map.put("uc", new UserCreateController(new UserCreateView(input)));
+		map.put("ur", new UserRemoveController(new UserRemoveView(input)));
 		map.put("upwdrest", new UserPasswordResetController(new UserPasswordResetView(input)));
-		
 		map.put("rr", new RemoveRoomController(new RemoveRoomView(input)));
 		map.put("ar", new AddRoomController(new AddRoomView(input)));
+
+		
+		map.put("rep", new ReportController(new CommandView(input)));
+		map.put("credit", new ExtraCreditController(new ExtraCreditView(input)));
+		
+		
 		return map;
 	}
 }

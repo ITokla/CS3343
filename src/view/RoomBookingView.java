@@ -67,8 +67,9 @@ public class RoomBookingView extends View {
 		}
 	}
 	
+	
 	// print Room booking detail by date
-	public void showDateRoomingDetails(LocalDate date, ArrayList<Room> rooms, ArrayList<RoomBooking> bookings) {
+	public static void showDateRoomingDetails(LocalDate date, ArrayList<Room> rooms, ArrayList<RoomBooking> bookings) {
 			
 		LocalTime startTime = LocalTime.of(9, 0);
 		LocalTime endTime = LocalTime.of(20, 30);

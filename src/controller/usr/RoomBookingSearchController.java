@@ -15,6 +15,7 @@ public class RoomBookingSearchController extends Controller{
 	public RoomBookingSearchController(RoomBookingSearchView view) {
 		this.view = view;
 		this.map = SearchCmdFactory.create();
+		
 		this.view.setVerifyCmds(this.map.keySet());
 	}
 	
@@ -22,6 +23,7 @@ public class RoomBookingSearchController extends Controller{
 	public void execute() {
 		// TODO Auto-generated method stub
 		System.out.println("[date| emp | room] [date/name] [ASC|DESC (optional)]");
+		System.out.println("Enter: exit will quit the search mode.");
 		while(true) {
 			String[] cmd = view.getCommand();
 			if(cmd == null)

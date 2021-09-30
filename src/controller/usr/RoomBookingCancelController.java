@@ -8,6 +8,7 @@ import controller.Controller;
 import java.time.LocalDate;
 
 import model.Credit;
+import model.Room;
 import model.RoomBooking;
 import system.MCRB;
 import util.Time;
@@ -27,7 +28,7 @@ public class RoomBookingCancelController extends Controller{
 			ArrayList<RoomBooking> employeeBookings = searchRoomBooking(date);
 			
 			if(employeeBookings == null || employeeBookings.size() == 0) {
-				view.showMessage("Not found.");
+				view.showMessage("Not record found.");
 				return;
 			}
 			
@@ -38,12 +39,15 @@ public class RoomBookingCancelController extends Controller{
 				selectedIndex = view.selectList(employeeBookings);
 			}
 			
+			if(selectedIndex == employeeBookings.size())
+				return;
+			
 			MCRB instance = MCRB.getInstance();
 			RoomBooking preRemoveRoomBooking = employeeBookings.get(selectedIndex);
 			view.showRoomBookingDetails(preRemoveRoomBooking);
 			
 			// Confirm [Y/n]
-			if(view.confirmCancel()) {
+			if(view.Confirm()) {
 				instance.removeRoomBooking(preRemoveRoomBooking);
 				view.showMessage("Room booking cancel");
 				long time = Time.durationMinutes(preRemoveRoomBooking.getStartTime(), preRemoveRoomBooking.getEndTime());
@@ -51,15 +55,17 @@ public class RoomBookingCancelController extends Controller{
 				credit.setMinute(credit.toMinutes() + time);
 				view.showMessage("Company Credit update: " + credit.toMinutes());
 			}
-		} catch(ParseException e) {
-			System.out.println("Please enter correct format: yyyy-MM-dd");
+		} catch(Exception e) {
+			System.out.println("Please enter correct format: yyyy-MM-dd" + e);
 		}
 		
 	}
 		
 
 	public ArrayList<RoomBooking> searchRoomBooking(LocalDate date){
-		System.out.println(MCRB.getInstance().getSession().getEmployee().getUsername());
+		
+		if(MCRB.getInstance().isAdmin(MCRB.getInstance().getSession().getEmployee()))
+			return MCRB.getInstance().getRoomBookingByDate(date);
 		return MCRB.getInstance().searchCompanyRoomBookig(date, MCRB.getInstance().getSession().getEmployee());
 	}
 	
