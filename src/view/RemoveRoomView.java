@@ -12,4 +12,8 @@ public class RemoveRoomView extends View{
 		System.out.print("Enter Roomname: ");
 		return input.nextLine();
 	}
+	
+	public void showCountOfRemovedRoomBooking(int number) {
+		System.out.printf("Removed %d Room Booking\n", number);
+	}
 }

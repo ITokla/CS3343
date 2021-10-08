@@ -1,6 +1,7 @@
 package system;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import model.user.Administrator;
 import model.user.Employee;
 import system.scheduler.CreditRefillExceutor;
 import system.scheduler.Scheduler;
+import util.Time;
 
 public class MCRB extends CRBCore{
 	
@@ -74,9 +76,21 @@ public class MCRB extends CRBCore{
 						cmpEMPList.get(index): null;
 		}
 		
-		int index = Collections.binarySearch(admins, new Administrator(emp.getUsername(), emp.getPassword()));
 		
-		return (index > -1)? admins.get(index): null;
+		int index = Collections.binarySearch(admins, new Administrator(emp.getUsername(), emp.getPassword()));
+		if(index > -1) 
+			return (this.verifyPassword(admins.get(index), emp))?
+					admins.get(index): null;
+		
+		
+		return null;
+	}
+	
+	
+	public ArrayList<RoomBooking> removeRoomBooking(Employee emp) {
+		ArrayList<RoomBooking> rmList = new ArrayList<>(bookingList.stream().filter((RoomBooking rb) -> rb.getEmployee() == emp).collect(Collectors.toList()));
+		bookingList.removeAll(rmList);
+		return rmList;
 	}
 	
 	public boolean isAdmin(Employee emp) {
@@ -149,6 +163,22 @@ public class MCRB extends CRBCore{
 		return RoomBooking.getRoomBookingByCompany(this.bookingList, searchCompany(emp).getEmployees(), date);
 	}
 	
+
+	
+	public void creaditRefill(ArrayList<RoomBooking> rmList) {
+		LocalDateTime sysDateTime = LocalDateTime.now();
+		for(RoomBooking rb: rmList) {
+			if(rb.getStartDateTime().isAfter(sysDateTime)) {
+				Company cmp = this.searchCompany(rb.getEmployee());
+				if(cmp != null) {
+					cmp.getCredit().setMinute(Time.durationMinutes(rb.getStartTime(), rb.getEndTime()));
+					System.out.println(cmp.getCredit().toMinutes());
+				}
+					
+			}
+				
+		}
+	}
 	
 	public void creditRefillAll(double creditMinute) {
 		companyList.forEach(e -> e.getCredit().setMinute(creditMinute));

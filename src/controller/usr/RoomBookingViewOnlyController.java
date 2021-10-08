@@ -27,7 +27,7 @@ public class RoomBookingViewOnlyController extends Controller {
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return "View Room Avaiable";
+		return "View Room Available";
 	}
 
  	

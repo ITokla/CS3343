@@ -1,6 +1,5 @@
 package controller.usr;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import controller.Controller;
@@ -8,7 +7,6 @@ import controller.Controller;
 import java.time.LocalDate;
 
 import model.Credit;
-import model.Room;
 import model.RoomBooking;
 import system.MCRB;
 import util.Time;

@@ -33,8 +33,10 @@ public class ExtraCreditController extends Controller{
 			return;
 		
 		double credit = view.getCredit();
-		if (credit < 1)
+		if (credit < 1) {
 			view.showMessage("Credit update must be >= 1");
+			return;
+		}
 		
 		Company company = companys.get(index);
 		company.getCredit().setMinute(company.getCredit().toMinutes() + credit*60);

@@ -7,7 +7,6 @@ import controller.Controller;
 import controller.admin.report.Report;
 import factory.ReportCmdFactory;
 import view.CommandView;
-import view.report.ReportView;
 
 public class ReportController extends Controller{
 	private CommandView view;

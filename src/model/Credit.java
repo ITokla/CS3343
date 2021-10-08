@@ -26,4 +26,8 @@ public class Credit {
 	public void setMinute(double minute) {
 		this.credit = minute/60;
 	}
+	
+	public LocalDateTime getCreateDateTime() {
+		return createDate;
+	}
 }

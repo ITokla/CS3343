@@ -14,6 +14,7 @@ public class AdministratorPermission extends EmployeePermission{
 		this.map.put("rep", true);
 		this.map.put("credit", true);
 		this.map.put("rb", false);
+		this.map.put("own", false);
 		
 	}
 	

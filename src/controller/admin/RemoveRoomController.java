@@ -1,7 +1,10 @@
 package controller.admin;
 
+import java.util.ArrayList;
+
 import controller.Controller;
 import model.Room;
+import model.RoomBooking;
 import system.MCRB;
 import view.RemoveRoomView;
 
@@ -20,8 +23,12 @@ public class RemoveRoomController extends Controller {
 			view.showMessage("Room not found.");
 			return;
 		}
-		if(this.view.Confirm())
+		if(this.view.Confirm()) {
 			MCRB.getInstance().removeRoom(room);
+			ArrayList<RoomBooking> rmList = MCRB.getInstance().removeRoomBooking(room);
+			MCRB.getInstance().creaditRefill(rmList);
+			view.showCountOfRemovedRoomBooking(rmList.size());
+		}
 	}
 
 	@Override

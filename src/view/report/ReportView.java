@@ -2,7 +2,6 @@ package view.report;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 import system.MCRB;
 import view.NoInputView;

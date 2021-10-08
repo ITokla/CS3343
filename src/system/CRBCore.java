@@ -9,6 +9,7 @@ import model.Room;
 import model.Session;
 import model.user.Employee;
 import model.RoomBooking;
+import java.util.stream.Collectors;
 
 abstract class CRBCore {
 	
@@ -40,6 +41,14 @@ abstract class CRBCore {
 		roomList.remove(room);
 		Collections.sort(roomList);
 	}
+	
+	// return count of remove rooms
+	public ArrayList<RoomBooking> removeRoomBooking(Room room) {
+		ArrayList<RoomBooking> rmList = new ArrayList<>( bookingList.stream().filter((RoomBooking rb) -> rb.getRoom()==room).collect(Collectors.toList()));
+		bookingList.removeAll(rmList);
+		return rmList;
+	}
+	
 	
 	public void addRoom(Room room) {
 		roomList.add(room);

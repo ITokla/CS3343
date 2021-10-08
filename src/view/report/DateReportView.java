@@ -2,7 +2,6 @@ package view.report;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import model.Room;
 import model.RoomBooking;
