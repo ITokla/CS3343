@@ -21,7 +21,7 @@ public class RoomReport extends Report{
 	public void execute(String[] args) {
 		// TODO Auto-generated method stub
 		if(args.length< 1) {
-			System.out.println(args[0] + " not found.");
+			view.showMessage((args[0] + " not found."));
 			return;
 		}
 		LocalDate date = (args.length == 1)? LocalDate.now(): parseDate(args[1]);

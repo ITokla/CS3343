@@ -19,7 +19,8 @@ public class CompanyReport extends Report {
 	public void execute(String[] args) {
 		
 		if(args.length< 1) {
-			System.out.println("Can't search the Company");
+			view.showMessage("Can't search the Company");
+			return;
 		}
 		
 		Company cmp = MCRB.getInstance().getCompany(args[0]);

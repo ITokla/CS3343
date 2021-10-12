@@ -22,8 +22,9 @@ public class RoomBookingSearchController extends Controller{
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-		System.out.println("[date| emp | room] [date/name] [ASC|DESC (optional)]");
-		System.out.println("Enter: exit will quit the search mode.");
+		
+		view.showMessage("[date| emp | room] [date/name] [ASC|DESC (optional)]");
+		view.showMessage("Enter: exit will quit the search mode.");
 		while(true) {
 			String[] cmd = view.getCommand();
 			if(cmd == null)
