@@ -109,7 +109,7 @@ public class RoomBookingController extends Controller {
 			credit.setHour((credit.toMinutes() - Time.durationMinutes(startTime, endTime))/60);
 
 		}  catch (Exception e) {
-			System.out.println("Cannot read the date." + e);
+			System.out.println("Cannot read the date.");
 		}
 	}
 	
