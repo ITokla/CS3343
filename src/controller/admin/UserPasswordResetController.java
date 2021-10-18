@@ -19,8 +19,10 @@ public class UserPasswordResetController extends Controller{
 		// TODO Auto-generated method stub
 		String username = this.view.getEmployee();
 		Employee employee = MCRB.getInstance().searchEmployee(username);
-		if(employee == null)
+		if(employee == null) {
 			view.showMessage("User not found.");
+			return;
+		}
 		String password = Generator.generatePwd(8);
 		view.showMessage("Please mark the new password: " + password);
 		view.showMessage("You needs to reset password in first time login.");

@@ -61,10 +61,26 @@ public class RoomBookingCancelController extends Controller{
 		
 
 	public ArrayList<RoomBooking> searchRoomBooking(LocalDate date){
+		ArrayList<RoomBooking> rb;
+		if(MCRB.getInstance().isAdmin(MCRB.getInstance().getSession().getEmployee())) 
+			rb = MCRB.getInstance().getRoomBookingByDate(date);
+		else
+			rb = MCRB.getInstance().searchCompanyRoomBookig(date, MCRB.getInstance().getSession().getEmployee());
 		
-		if(MCRB.getInstance().isAdmin(MCRB.getInstance().getSession().getEmployee()))
-			return MCRB.getInstance().getRoomBookingByDate(date);
-		return MCRB.getInstance().searchCompanyRoomBookig(date, MCRB.getInstance().getSession().getEmployee());
+		if(date.isBefore(MCRB.getInstance().getSystemDateTime().toLocalDate()) || date.isEqual(MCRB.getInstance().getSystemDateTime().toLocalDate()))
+			rb = removeBeforeSystemTimeRoomBooking(rb);
+		return rb;
+	}
+	
+	
+	public ArrayList<RoomBooking> removeBeforeSystemTimeRoomBooking(ArrayList<RoomBooking> rbs){
+		ArrayList<RoomBooking> rmList = new ArrayList<RoomBooking>();
+		for(RoomBooking rb:rbs) {
+			if(rb.getStartTime().isBefore(MCRB.getInstance().getSystemDateTime().toLocalTime()))
+				rmList.add(rb);
+		}
+		rbs.removeAll(rmList);
+		return rbs;
 	}
 	
 	public String getDescription() {

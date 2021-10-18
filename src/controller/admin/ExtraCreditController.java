@@ -18,29 +18,33 @@ public class ExtraCreditController extends Controller{
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-		int index = 0;
-		
-		// Search company by input name
-		ArrayList<Company> companys = MCRB.getInstance().searchCompany(view.getCompanyName());
-		if(companys.size() == 0) {
-			view.showMessage("Company not found");
-			return;
+		try {
+			int index = 0;
+			
+			// Search company by input name
+			ArrayList<Company> companys = MCRB.getInstance().searchCompany(view.getCompanyName());
+			if(companys.size() == 0) {
+				view.showMessage("Company not found");
+				return;
+			}
+			index = view.selectList(companys);
+			
+			// index == size mean EXIT
+			if(index == companys.size())
+				return;
+			
+			double credit = view.getCredit();
+			if (credit < 1) {
+				view.showMessage("Credit update must be >= 1");
+				return;
+			}
+			
+			Company company = companys.get(index);
+			company.getCredit().setMinute(company.getCredit().toMinutes() + credit*60);
+			view.showMessage( company.getName() + " Credit updated.");
+		}catch(Exception e) {
+			view.showMessage("Please enter float/integer number");
 		}
-		index = view.selectList(companys);
-		
-		// index == size mean EXIT
-		if(index == companys.size())
-			return;
-		
-		double credit = view.getCredit();
-		if (credit < 1) {
-			view.showMessage("Credit update must be >= 1");
-			return;
-		}
-		
-		Company company = companys.get(index);
-		company.getCredit().setMinute(company.getCredit().toMinutes() + credit*60);
-		view.showMessage( company.getName() + " Credit updated.");
 	}
 
 	@Override
