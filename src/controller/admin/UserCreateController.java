@@ -38,15 +38,16 @@ public class UserCreateController extends Controller {
 			
 		
 		String username;
-		Employee emp = null;
+		boolean usernameDuplicate;
 		
 		do {
 			username = view.getUsername();
 			// check username whether repeat
-			emp = MCRB.getInstance().searchEmployee(username);
-			if(emp != null)
+			usernameDuplicate = MCRB.getInstance().duplicateUsername(username);
+			
+			if(usernameDuplicate)
 				view.showMessage("Username is already");
-		}while(emp != null);
+		}while(usernameDuplicate);
 		
 		// Generate random password
 		String password = Generator.generatePwd(8);

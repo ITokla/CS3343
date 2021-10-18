@@ -148,9 +148,23 @@ public class MCRB extends CRBCore{
 				return result;
 			}			
 		}
+		
 		return null;
 	}
 	
+	public Administrator searchAdmin(String username) {
+		int index = Collections.binarySearch(admins, new Administrator(username, null));
+		return (index > -1)? admins.get(index): null;
+	}
+	
+	
+	public boolean duplicateUsername(String username) {
+		if(searchEmployee(username) != null) {
+			if(searchAdmin(username) != null)
+				return false;
+		}
+		return true;
+	}
 	
 	public void removeEmployee(Employee emp) {
 		for(Company cmp: companyList) {
@@ -163,6 +177,19 @@ public class MCRB extends CRBCore{
 		return RoomBooking.getRoomBookingByCompany(this.bookingList, searchCompany(emp).getEmployees(), date);
 	}
 	
+	public void removeRoomBookingByCompany(Company cmp) {
+		ArrayList<RoomBooking> rmList = new ArrayList<>();
+		for(RoomBooking rb: this.getRoomBookingList()) {
+			 if(this.searchCompany(rb.getEmployee()) == cmp)
+				 rmList.add(rb);
+		}
+		this.getRoomBookingList().removeAll(rmList);
+	}
+	
+	public void removeCompany(Company cmp) {
+		int index = Collections.binarySearch(companyList, cmp);
+		companyList.remove(index);
+	}
 
 	
 	public void creaditRefill(ArrayList<RoomBooking> rmList) {

@@ -49,14 +49,19 @@ class CommandHandler{
 			mapCmds = MenuFactory.create(MCRB.getInstance().getSession(), input);
 			
 			while(MCRB.getInstance().getSession() != null) {
-				System.out.println();
-				displayMenu();
-				System.out.print("\nCommand: ");
-				String cmd = input.nextLine();
-				if(mapCmds.containsKey(cmd))
-					mapCmds.get(cmd).execute();
-				else
-					System.out.println("command not found");
+				
+				try {
+					System.out.println();
+					displayMenu();
+					System.out.print("\nCommand: ");
+					String cmd = input.nextLine();
+					if(mapCmds.containsKey(cmd))
+						mapCmds.get(cmd).execute();
+					else
+						System.out.println("command not found");
+				}catch(Exception e) {
+					System.out.println("Command Error");
+				}
 			}
 			
 			initMenu();

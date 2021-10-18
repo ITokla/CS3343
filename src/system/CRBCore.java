@@ -36,6 +36,9 @@ abstract class CRBCore {
 		this.bookingList = bookingList;
 	}
 	
+	public LocalDateTime getSystemDateTime() {
+		return LocalDateTime.now();
+	}
 	
 	public void removeRoom(Room room) {
 		roomList.remove(room);

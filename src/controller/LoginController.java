@@ -17,6 +17,12 @@ public class LoginController extends Controller {
 
 		Employee emp = login(view.getLoginUser());
 		if (emp != null) {
+			
+			if(emp.getStatus() == 2) {
+				view.showMessage("User locked.\n");
+				return;
+			}
+			
 			MCRB.getInstance().createSession(emp);
 			view.showMessage("Login successful");
 			
@@ -24,7 +30,7 @@ public class LoginController extends Controller {
 				view.showMessage("\nSetup new Password");
 				String password = this.view.initPassword();
 				emp.setPassword(password);
-				emp.setInit(false);
+				emp.setStatus(1);
 			}
 			
 		} else

@@ -22,12 +22,12 @@ public class UserRemoveController extends Controller{
 			return;
 		}
 		
-		MCRB.getInstance().removeEmployee(emp);
-		view.showMessage("Remove suceeful.");
+		emp.lock(true);
+		view.showMessage("User locked.");
 	}
 	
 	public String getDescription() {
-		return "Remove User";
+		return "Lock User";
 	}
 	
 }

@@ -80,7 +80,7 @@ public class RoomBookingController extends Controller {
 			int index = view.selectList(avaiableStartTimes);
 			
 			// User input EXIT
-			view.showMessage(roomName);
+			// view.showMessage(roomName);
 			if(index == avaiableStartTimes.size())
 				return;
 			
@@ -205,7 +205,20 @@ public class RoomBookingController extends Controller {
 	public ArrayList<LocalTime> getAvailableStartTime(LocalDate date, Room room) {
 		ArrayList<RoomBooking> bookings = MCRB.getInstance().searchBooking(date, room);
 		ArrayList<LocalTime> allAvaiableTime = RoomBookingStaticTimeFactory.create();
-
+		
+		// Remove current datetime
+		
+		if(date.isEqual(MCRB.getInstance().getSystemDateTime().toLocalDate())) {
+			ArrayList<LocalTime> rmList = new ArrayList<LocalTime>();
+			for(LocalTime time: allAvaiableTime) {
+				if(time.isBefore(MCRB.getInstance().getSystemDateTime().toLocalTime()))
+					rmList.add(time);
+			}
+			
+			allAvaiableTime.removeAll(rmList);
+		}
+		
+		
 		// Remove all booked time
 		for (RoomBooking rb : bookings) {
 			LocalTime startTime = rb.getStartTime();
