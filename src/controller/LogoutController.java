@@ -13,7 +13,8 @@ public class LogoutController extends Controller{
 	
 	public void execute() {
 		MCRB.getInstance().clearSession();
-		view.showMessage("Logouted\n");
+//		view.showMessage("Logouted\n"); 30/10 bug
+		view.showMessage("Logouted");
 	}
 	
 	public String getDescription() {
