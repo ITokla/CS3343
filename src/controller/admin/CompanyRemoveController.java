@@ -22,7 +22,7 @@ public class CompanyRemoveController extends Controller{
 			return;
 		}
 		
-		if(cmpList.size() == 0) {
+		if(cmpList.size() == 0) {//test1
 			view.showMessage("Not found.");
 			return;
 		}
@@ -31,7 +31,7 @@ public class CompanyRemoveController extends Controller{
 	
 		if(index == cmpList.size())
 			return; // exit
-		if(view.Confirm()) {
+		if(view.Confirm()) {//test2
 			MCRB.getInstance().removeRoomBookingByCompany(cmpList.get(index));
 			MCRB.getInstance().removeCompany(cmpList.get(index));
 			view.showMessage("Company Removed.");

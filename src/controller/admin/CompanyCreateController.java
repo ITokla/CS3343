@@ -14,11 +14,11 @@ public class CompanyCreateController extends Controller{
 	
 	public void execute() {
 		String cmpName = view.getCreateCompanyName();
-		if(MCRB.getInstance().getCompany(cmpName) != null) {
+		if(MCRB.getInstance().getCompany(cmpName) != null) {//test1
 			view.showMessage("Company Name duplicated");
 			return;
 		}
-		Company cmp = new Company(cmpName);
+		Company cmp = new Company(cmpName);//test2
 		MCRB.getInstance().addCompany(cmp);
 		view.showMessage(cmpName+" is created.");
 	}

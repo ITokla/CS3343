@@ -13,11 +13,11 @@ public class AddRoomController extends Controller{
 	
 	public void execute() {
 		Room room = this.view.createRoom();
-		if(MCRB.getInstance().searchRoom(room.getRoomName()) != null) {
+		if(MCRB.getInstance().searchRoom(room.getRoomName()) != null) {//test1
 			view.showMessage("Room name is already.");
 			return;
 		}
-		MCRB.getInstance().addRoom(room);
+		MCRB.getInstance().addRoom(room);//test2
 	}
 
 	@Override
