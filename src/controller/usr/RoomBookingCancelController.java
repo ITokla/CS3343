@@ -49,7 +49,7 @@ public class RoomBookingCancelController extends Controller{
 				instance.removeRoomBooking(preRemoveRoomBooking);
 				view.showMessage("Room booking cancel");
 				long time = Time.durationMinutes(preRemoveRoomBooking.getStartTime(), preRemoveRoomBooking.getEndTime());
-				Credit credit = instance.searchCompany(instance.getSession().getEmployee()).getCredit();
+				Credit credit = instance.searchCompany(preRemoveRoomBooking.getEmployee()).getCredit();
 				credit.setMinute(credit.toMinutes() + time);
 				view.showMessage("Company Credit update: " + credit.toMinutes());
 			}
@@ -66,6 +66,9 @@ public class RoomBookingCancelController extends Controller{
 			rb = MCRB.getInstance().getRoomBookingByDate(date);
 		else
 			rb = MCRB.getInstance().searchCompanyRoomBookig(date, MCRB.getInstance().getSession().getEmployee());
+		
+		if(rb == null || rb.size() == 0)
+			return null;
 		
 		if(date.isBefore(MCRB.getInstance().getSystemDateTime().toLocalDate()) || date.isEqual(MCRB.getInstance().getSystemDateTime().toLocalDate()))
 			rb = removeBeforeSystemTimeRoomBooking(rb);
