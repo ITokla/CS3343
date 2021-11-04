@@ -44,7 +44,6 @@ public class UserCreateController extends Controller {
 			username = view.getUsername();
 			// check username whether repeat
 			usernameDuplicate = MCRB.getInstance().duplicateUsername(username);
-			
 			if(usernameDuplicate)
 				view.showMessage("Username is already");
 		}while(usernameDuplicate);

@@ -32,7 +32,7 @@ public class DateReport extends Report {
 			ArrayList<RoomBooking> rbs = instance.getRoomBookingByDate(date);
 			
 			view.printHeader();
-			view.printReportMonth(date);
+			// view.printReportMonth(date);
 			view.printContent(rooms, rbs, date);
 			
 			view.printFooter();

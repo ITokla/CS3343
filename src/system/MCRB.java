@@ -159,8 +159,9 @@ public class MCRB extends CRBCore{
 	
 	
 	public boolean duplicateUsername(String username) {
-		if(searchEmployee(username) != null) {
-			if(searchAdmin(username) != null)
+		boolean employeeResult = (searchEmployee(username) == null)? true: false;
+		if(employeeResult) {
+			if(searchAdmin(username) == null)
 				return false;
 		}
 		return true;
