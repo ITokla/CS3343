@@ -39,7 +39,6 @@ public class CompanyRemoveController_test {
 		
 		assertEquals("Not found.\r\n", stream.toString());
 	}
-	//testing
 //	@Test
 //	public void execute_test2() {
 //		class CompanyRemoveView2 extends CompanyRemoveView{
