@@ -9,7 +9,7 @@ public class DateSearch extends Search{
 	public void execute(String[] cmds) {
 		
 		try {
-			if(cmds.length < 1)
+			if(cmds.length < 1)//bug
 				return;
 			
 			String sortType = (cmds.length < 2)? "ASC": cmds[1];
