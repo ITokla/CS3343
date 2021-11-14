@@ -47,6 +47,7 @@ abstract class CRBCore {
 		Collections.sort(roomList);
 	}
 	
+	//2021.11.14 17:28 Ryan
 	public void setRoomBookingList(ArrayList<RoomBooking> list) {
 		this.bookingList = list;
 	}

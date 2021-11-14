@@ -25,6 +25,7 @@ import view.RoomBookingCancelView;
 
 class RoomBookingCancelController_test {
 
+	//2021.11.14 17:29 Ryan
 	public ByteArrayOutputStream getOutputStream() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		PrintStream printStream = new PrintStream(stream);

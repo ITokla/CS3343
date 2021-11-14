@@ -15,6 +15,7 @@ import java.time.LocalTime;
 public class RoomBookingDBOFactory {
 	public static ArrayList<RoomBooking> create(){
 		ArrayList<RoomBooking> list = new ArrayList<RoomBooking>();
+		//2021.11.14 17:29 Ryan
 		Employee testEmp1 = MCRB.getInstance().searchEmployee("cp3test");
 		Employee testEmp2 = MCRB.getInstance().searchEmployee("cp3test1");
 		Room testRm = MCRB.getInstance().searchRoom("RoomHasBook");
