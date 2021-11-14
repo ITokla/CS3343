@@ -173,6 +173,9 @@ class RoomBookingController_test {
 			public String getRoomName() {
 				return "sss606";
 			}
+			public int selectList(ArrayList<?> list) {
+				return 100;
+			}
 		}
 		class testRoomBookingController extends RoomBookingController{
 			public testRoomBookingController(RoomBookingView view) {

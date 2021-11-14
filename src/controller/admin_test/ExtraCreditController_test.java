@@ -56,10 +56,13 @@ class ExtraCreditController_test {
 				super(input);
 			}
 			public String getCompanyName() {
-				return "cmp";
+				return "cmp1";
+			}
+			public double getCredit() {
+				return 30;
 			}
 			public int selectList(ArrayList<?> list) {
-				return 2;
+				return 999;
 			}
 		}
 		class testExtraCreditController extends ExtraCreditController{
