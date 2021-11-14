@@ -10,6 +10,8 @@ import model.Session;
 import model.user.Employee;
 import model.RoomBooking;
 import java.util.stream.Collectors;
+import factory.RoomBookingDBOFactory;
+import factory.RoomDBOFactory;
 
 abstract class CRBCore {
 	
@@ -56,6 +58,16 @@ abstract class CRBCore {
 	public void addRoom(Room room) {
 		roomList.add(room);
 		Collections.sort(roomList);
+	}
+	
+	//2021.11.14 Ryan
+	public void setRoomList(ArrayList<Room> list) {
+		roomList = list;
+	}
+	
+	//2021.11.14 Ryan
+	public void cleanRoom() {
+		roomList.clear();
 	}
 	
 	public void createSession(Employee emp) {
