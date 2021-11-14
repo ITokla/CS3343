@@ -47,6 +47,10 @@ abstract class CRBCore {
 		Collections.sort(roomList);
 	}
 	
+	public void setRoomBookingList(ArrayList<RoomBooking> list) {
+		this.bookingList = list;
+	}
+	
 	// return count of remove rooms
 	public ArrayList<RoomBooking> removeRoomBooking(Room room) {
 		ArrayList<RoomBooking> rmList = new ArrayList<>( bookingList.stream().filter((RoomBooking rb) -> rb.getRoom()==room).collect(Collectors.toList()));
