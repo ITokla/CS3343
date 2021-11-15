@@ -202,4 +202,14 @@ public class LoginController_test{
 		lc2.execute();
 		assertEquals("Login successful\r\nSetup new Password\r\n", stream.toString());
 	}
+	
+	@Test 
+	public void execute_getDesc(){
+		Scanner input = new Scanner(System.in);
+		LoginView v = new LoginView(input);
+		LoginController lc2 = new LoginController(v);
+		String result = lc2.getDescription();
+		assertEquals("Login", result);
+	}
+	
 }

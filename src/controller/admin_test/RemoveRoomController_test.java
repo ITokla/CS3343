@@ -106,48 +106,45 @@ class RemoveRoomController_test {
 		assertEquals(null, deleted);
 	}
 	
-//	@Test
-//	void test_rrc_RoomExisted_Confirm_HaveBooking() {
-//		class testRemoveRoomView extends RemoveRoomView{
-//			public testRemoveRoomView(Scanner input) {
-//				super(input);
-//			}
-//			public String getRoomName() {
-//				return "RoomHasBook";
-//			}
-//			public boolean Confirm() {
-//				return true;
-//			}
-//		}
-//		class testRemoveRoomController extends RemoveRoomController{
-//			public testRemoveRoomController(RemoveRoomView view) {
-//				super(view);
-//			}
-//		}
-//		class testRoomBookingView extends RoomBookingView{
-//			public testRoomBookingView(Scanner input) {
-//				super(input);
-//			}
-//			public LocalDate getDate() {
-//				return LocalDate.of(2021,9,26);
-//			}
-//			public String getRoomName() {
-//				return "RoomHasBook";
-//			}
-//		}
-//		class testRoomBookingController extends RoomBookingController{
-//			public testRoomBookingController(RoomBookingView view) {
-//				super(view);
-//			}
-//		}
-//		Scanner input = new Scanner(System.in);
-//		ByteArrayOutputStream stream = getOutputStream();
-//		testRemoveRoomView trrv = new testRemoveRoomView(input);
-//		testRemoveRoomController trrc = new testRemoveRoomController(trrv);
-//		trrc.execute();
-//		assertEquals("Removed 1 Room Booking\n\r\n", stream.toString());
-//	}
+	@Test
+	void test_rrc_RoomExisted_Confirm_HaveBooking() {
+		class testRemoveRoomView extends RemoveRoomView{
+			public testRemoveRoomView(Scanner input) {
+				super(input);
+			}
+			public String getRoomName() {
+				return "RoomHasBook";
+			}
+			public boolean Confirm() {
+				return true;
+			}
+		}
+		class testRemoveRoomController extends RemoveRoomController{
+			public testRemoveRoomController(RemoveRoomView view) {
+				super(view);
+			}
+		}
+				
+		MCRB.getInstance().setRoomBookingList(RoomBookingDBOFactory.create());
+		Scanner input = new Scanner(System.in);
+		ByteArrayOutputStream stream = getOutputStream();
+		
+		testRemoveRoomView trrv = new testRemoveRoomView(input);
+		testRemoveRoomController trrc = new testRemoveRoomController(trrv);
+		trrc.execute();
+		
+		assertEquals(true, stream.toString().contains("Removed 5 Room Booking"));
+	}
 	
-	
+	@Test
+	void test_rrc_getDesc() {
+		Scanner input = new Scanner(System.in);
+
+		RemoveRoomView trrv = new RemoveRoomView(input);
+		RemoveRoomController trrc = new RemoveRoomController(trrv);
+		String result = trrc.getDescription();
+		
+		assertEquals("Remove Room", result);
+	}
 
 }

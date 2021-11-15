@@ -29,6 +29,15 @@ public class LogoutController_test {
 		assertEquals("Logouted\r\n", stream.toString());
 	}
 	
+	@Test
+	public void execute_getDesc() {
+		Scanner input = new Scanner(System.in);
+		LogoutView v = new LogoutView(input);
+		LogoutController lc = new LogoutController(v);	
+		String result = lc.getDescription();
+		
+		assertEquals("Logout", result);
+	}
 	
 	
 
