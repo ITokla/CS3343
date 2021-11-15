@@ -60,6 +60,10 @@ public class MCRB extends CRBCore{
 		Collections.sort(companyList);
 	}
 	
+	public void setCompanyList(ArrayList<Company> list) {
+		this.companyList = list;
+	}
+	
 	public ArrayList<Employee> getEmployeeList(String companyName) {
 		int index = Collections.binarySearch(companyList, new Company(companyName));
 		return (index < 0)? null : companyList.get(index).getEmployees();
