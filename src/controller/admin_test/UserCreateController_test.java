@@ -87,37 +87,42 @@ class UserCreateController_test {
 		
 	}
 	
-//	@Test
-//	void test_createEmployee_companyExist_userDuplicate() {
-//		class testUserCreateView extends UserCreateView{
-//			public testUserCreateView(Scanner input) {
-//				super(input);
-//			}
-//			public String getUsername() {
-//				return "cp1test1";
-//			}
-//			public String getCompanyName() {
-//				return "cmp1";
-//			}
-//			public int selectList(ArrayList<?> list) {
-//				return 0;
-//			}
-//		}
-//		class testUserCreateController extends UserCreateController{
-//			public testUserCreateController(UserCreateView view) {
-//				super(view);
-//			}
-//		}
-//		Scanner input = new Scanner(System.in);
-//		ByteArrayOutputStream stream = getOutputStream();
-//
-//		testUserCreateView tucv = new testUserCreateView(input);
-//		testUserCreateController ucc = new testUserCreateController(tucv);
-//		ucc.execute();
-//		
-//		assertEquals("Username is already\r\n",stream.toString());
+	@Test
+	void test_createEmployee_companyExist_userDuplicate() {
+		class testUserCreateView extends UserCreateView{
+			int time = 0;
+			public testUserCreateView(Scanner input) {
+				super(input);
+			}
+			public String getUsername() {
+				time++;
+				if(time<2)
+					return "cp1test1";
+				else
+					return "cp1test0";
+			}
+			public String getCompanyName() {
+				return "cmp1";
+			}
+			public int selectList(ArrayList<?> list) {
+				return 0;
+			}
+		}
+		class testUserCreateController extends UserCreateController{
+			public testUserCreateController(UserCreateView view) {
+				super(view);
+			}
+		}
+		Scanner input = new Scanner(System.in);
+		ByteArrayOutputStream stream = getOutputStream();
+
+		testUserCreateView tucv = new testUserCreateView(input);
+		testUserCreateController ucc = new testUserCreateController(tucv);
+		ucc.execute();
 		
-//	}
+		assertEquals(true,stream.toString().contains("Username is already"));
+		
+	}
 
 	@Test
 	void test_createEmployee_companyNotExist() {
