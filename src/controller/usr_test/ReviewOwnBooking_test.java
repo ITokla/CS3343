@@ -60,6 +60,39 @@ class ReviewOwnBooking_test {
 	}
 	
 	@Test
+	void test_ReviewOwningBooking_haveRecord() {
+		
+		class testLoginView extends LoginView{
+			public testLoginView(Scanner input) {
+				super(input);
+				// TODO Auto-generated constructor stub
+			}			
+			public Employee getLoginUser() {
+				return new Employee("cp1test", "test");
+			}
+			public String initPassword() {
+				return Hash.md5("test");
+			}
+		}
+		
+		MCRB.getInstance().setRoomBookingList(RoomBookingDBOFactory.create());
+		Scanner input = new Scanner(System.in);
+		ByteArrayOutputStream stream = getOutputStream();
+		
+		//Login with cp1test
+		testLoginView tlv = new testLoginView(input);
+		LoginController tlc = new LoginController(tlv);
+		tlc.execute();
+		
+		ReviewOwnBookingView rowbv = new ReviewOwnBookingView(input);
+		ReviewOwnBooking robc = new ReviewOwnBooking(rowbv);
+		robc.execute();
+		
+		assertEquals(false,stream.toString().contains("No any records"));		
+		
+	}
+	
+	@Test
 	void test_ReviewOwningBooking_getDesc() {
 		
 		Scanner input = new Scanner(System.in);
