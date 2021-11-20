@@ -190,7 +190,7 @@ class RoomBookingCancelController_test {
 		testRoomBookingCancelController trmcc = new testRoomBookingCancelController(trmcv);
 		trmcc.execute();
 		
-		assertEquals(true,stream.toString().contains("Invalid index."));	
+		assertEquals(true,stream.toString().contains("Room booking cancel"));	
 		
 	}
 	

@@ -243,7 +243,7 @@ class RoomBookingController_test {
 				// TODO Auto-generated constructor stub
 			}			
 			public Employee getLoginUser() {
-				return new Employee("cp1test", "test");
+				return new Employee("cp3test1", "test");
 			}		
 			public String initPassword() {
 				return Hash.md5("test");

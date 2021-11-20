@@ -186,7 +186,7 @@ class RoomBookingSearchController_test {
 		testRoomBookingSearchController trbsc = new testRoomBookingSearchController(trbsv);
 		trbsc.execute();
 		
-		assertEquals(false,stream.toString().contains("No any record found."));	
+		assertEquals(true,stream.toString().contains("Invalid input"));	
 		
 	}
 	
