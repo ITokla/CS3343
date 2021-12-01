@@ -20,9 +20,10 @@ public class LoginView extends UserManageView {
 		// Get Password
 		String pwd = null;
 		Console console = System.console();
-		if (console != null)
-			pwd = System.console().readPassword("Password:").toString();
-		else {
+		if (console != null) {
+			pwd = new String(System.console().readPassword("Password:"));
+			System.out.println(pwd);
+		}else {
 			System.out.println("Warning: console not found, password input may be echoed");
 			System.out.print("Password: ");
 			pwd = input.nextLine();

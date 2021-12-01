@@ -25,8 +25,8 @@ public abstract class UserManageView extends CompanyManageView{
 		do {
 			// console
 			if (console != null) {
-				pwd = console.readPassword("Password: ").toString();
-				pwdConfirm = console.readPassword("Confirm Password: ").toString();
+				pwd = new String(console.readPassword("Password: "));
+				pwdConfirm = new String(console.readPassword("Confirm Password: "));
 			}else {
 				// Scanner input
 				System.out.println("Warning: console not found, password input may be echoed");
