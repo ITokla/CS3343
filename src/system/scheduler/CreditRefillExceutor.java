@@ -13,7 +13,7 @@ public class CreditRefillExceutor extends Scheduler {
 	public void run() {
 		// TODO Auto-generated method stub
 		System.out.println("\nSystem: Credit updated");
-		MCRB.getInstance().creditRefillAll(99999);
+		MCRB.getInstance().creditRefillAll(300);
 	}
 
 	
