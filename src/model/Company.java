@@ -13,7 +13,7 @@ public class Company implements Comparable<Company>{
 	public Company(String name) {
 		this.name = name;
 		this.employees = new ArrayList<Employee>();
-		this.credit = new Credit(2);
+		this.credit = new Credit(0.5);
 	}
 	
 	public Company(String name, ArrayList<Employee> list) {
